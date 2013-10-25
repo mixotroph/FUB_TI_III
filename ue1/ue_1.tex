@@ -1,0 +1,109 @@
+\documentclass[11pt, a4paper]{scrartcl}
+\usepackage[ngerman]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{float}
+
+\begin{document}
+
+
+\onecolumn
+\subsection*{TI III WS 2013, Fr. 12-14}
+\section*{Lösung Übungsblatt 1}
+\textbf{Christoph van Heteren-Frese (Matr.-Nr.: 4465677)} \\ % Sven Wildermann (Matr.-Nr.: 4567553)}\\
+Tutor: Ruhland, eingereicht am \today\\
+\hrule
+
+
+\section*{Aufgabe 1}
+\subsection*{a)}
+\begin{figure}[H]
+\center
+\begin{tabular}{p{12cm}}
+\toprule
+\textit{Hardware} \\
+\midrule 
+CPU, Transistor, Festplatte, Spei\-cher, CD-ROM \\ 
+\bottomrule \addlinespace
+\textit{Betriebssystem} \\
+\midrule
+Scheduler, Assemb\-ler, Lader, Speichermanage\-ment,~Da\-tei\-sys\-tem, Makro\-pro\-zess\-or, Bios, Cache, Netz\-werk\-un\-ter\-stütz\-ung, Interprozesskommunikation\\
+\bottomrule \addlinespace
+\textit{Anwendungs\-pro\-gram\-me} \\
+\midrule
+Datenbanksystem, Texteditor, Graphikprogramm, Compil\-er, Bibliotheken, Linker, X-Windows, Text\-ver\-ar\-bei\-tungs\-pro\-gramm, Gerätemanagement, WWW-Browser\\
+\bottomrule \addlinespace
+\textit{Nutzer} \\
+\midrule
+Student/Studentin, ProffesorIn, Sekretär\\
+\bottomrule
+\end{tabular}
+\end{figure}
+\subsection*{b)}
+Dem Betriebssystem (englisch: \textit{operating system}, kurz OS) kommt hier eine Vermittlerrolle zu. Es ist dafür veranwortlich eine funktionierende Arbeitsumgebung be\-reit\-zustellen, so dass Anwwendungen (Software) auf einem Computersystem \glqq betrieben\grqq, also genutzt werden können. Das OS teillt dabei einer Anwendung u.a. (virtuellen) Speicher zu und sorgt für die Zuteilung von Prozessorzeit.
+\section*{Aufgabe 2}
+\begin{itemize}
+ \item Der Befehlssatz (englisch: \textbf{Instruction Set})
+umfasst die Menge der Maschinenbefehle eines Prozessors,
+die für den Programmierer sichtbar ist. Die ISA
+(Instruction Set Architecture) stellt damit eine Schnittstelle zwischen Soft-
+und  Hardware dar. 
+\item Ein \textbf{Interrupt} bezeichnet die kurzfristige Unterbrechnung
+der sequentiellen Programmausführung auf Grund einer dem Prozess
+fremden Ursache mit dem Zweck eine andere, zeitkritische (und kurze) 
+Verarbeitung durchzuführen. Nach der Unterbrechnung wird der
+vorherige Prozess fortgeführt, wo er unterbrochen wurde. 
+\item Ein \textbf{Prozess} beschreibt eine Einheit mit ausführbarer
+Befehlssequenz, aktueller Statusinformation und zugeordnetem 
+Speicherbereich (Register, shared memory etc.). Der Begriff
+Task ist mit dem Begriff Prozess äquivalent.
+\item Eine \textbf{Datei} ist eine vom Dateisystem geleitetes, 
+immer währendes Objekt mit dem Zweck der Langzeitspeicherung. 
+Diese wird im ``zweiten Speicher'' (z.B. USB Speicher, Festplatte)
+gespeichert und ähnelt dem virtuellen Speicher dahin gehend,
+dass nicht die physische Adresse, sondern nur der Dateiname
+dem Benutzer bekannt ist. 
+\item Ein \textbf{Systemaufruf} (engl. Systemcall oder Syscall)
+ist eine Methode, mit der Benutzeranwendungen Zugang zu System
+Services (=vom OS bereitgestellte Funktionalitäten) erhalten.
+\item Der Begriff \textbf{Multitasking} beschreibt die Fähigkeit
+eines Betriebssystems, mehrere Tasks (Prozesse) nebenläufig auszuführen.
+Hierfür werden die verschiedenen Prozesse immer wieder abwechselnd 
+ausgeführt, so dass für den Benutzer der Eindruck der gleichzeitigen 
+Ausführung entsteht (wenn Anzahl der Tasks $>$ Anzahl der CPU-Kerne).
+\end{itemize}
+\section*{Aufgabe 3}
+Während in einem \textbf{Mikrokernel} nur grundlegende
+Funktionen (zur Speicher- und Pro\-zess\-ver\-waltung; 
+Grundfunktionen zur Kommunikation) zur Verfügung gestellt
+werden, sind in einem \textbf{monolithischem} Kernel 
+neben diesen auch noch Treiber für die 
+Hardwarekomponenten und weitere Funktionen implementiert.
+\\ \\
+\textbf{Monolithischer Kernel}\\
+Vorteile: Weniger Kontextsprünge; keine teure Kommunikation\\
+Nachteil: Komplikationen beim Austausch von Funktionen\\ \\
+\textbf{Mikrokernel}\\ 
+Vorteile: präzise Schnittstelle, weniger Komplexität, klare 
+Strukturen\\
+Nachteile: Mehr Synchronisationsaufwand, weniger Geschwindigkeit
+\newpage
+\section*{Aufgabe 4}
+\subsection*{a)}
+\lstset{basicstyle=\small,
+		 inputencoding=latin1,
+		stringstyle=\ttfamily,
+		identifierstyle=,
+		showstringspaces=false,
+		language=c,
+		frame=trBL}
+\lstinputlisting{fahrenheit.c}
+\subsection*{b)}
+\lstinputlisting{fahrenheit_tab.c}
+\end{document}
