@@ -1,0 +1,51 @@
+\documentclass[11pt, a4paper]{scrartcl}
+\usepackage[ngerman]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{pdfpages}
+%
+\begin{document}
+\lstset{basicstyle=\small,
+		 inputencoding=latin1,
+		stringstyle=\ttfamily,
+		identifierstyle=,
+		showstringspaces=false,
+		language=c,
+		frame=trBL}
+%
+\subsection*{TI III WS 2013, Fr. 12-14}
+\section*{Lösung Übungsblatt 3}
+\textbf{Christoph van Heteren-Frese (Matr.-Nr.: 4465677), Julien  Stengel } \\%(Matr.-Nr.: 4567553)}\\
+Tutor: Ruhland, eingereicht am \today\\
+\hrule
+%
+\section*{Aufgabe 4}
+\subsection*{a)}
+\subsubsection*{Wieso haben die Variablen \texttt{a} und \texttt{b} zu unterschiedlichen Zeitpunkten verschiedene Werte?}
+Die Variablen \texttt{a} und \texttt{b} wurden mehrfach deklariert; zum einen \textit{global} in den Zeilen 3 und 4, sowie \textit{lokal} in den Funktionen \texttt{diff} (Zeile 14 und 15) und \texttt{main} (Zeile 23 und 24). Die Ausgabe des Programms besteht aus fünf Zeilen und wird durch mehrere Aufrufe der Bibliotheksfunktion \texttt{printf} erzeugt:
+\begin{enumerate}
+\item[(1)] Zeile eins der Ausgabe wird durch den Aufruf von \texttt{printf} in Zeile 27 erzeugt, der die Werte der zur Funktion \texttt{main} \textit{lokalen} Variablen \texttt{a} und \texttt{b} ausgibt
+\item[(2)] Zeile zwei der Ausgabe wird durch den Aufruf von \texttt{printf} innerhalb der Funktion \texttt{summe} (Zeile 8) erzeugt, die die \textit{global} deklarierten Variablen \texttt{a} und \texttt{b} ausgibt 
+\item[(3)] Zeile drei der Ausgabe wird durch den Aufruf von \texttt{printf} in Zeile 28 erzeugt. Die \textit{lokalen} Variablen \texttt{a} und \texttt{b} werden als Parameter an die Funktion \texttt{summe} übergeben, die die Summe der beiden Werte zurück gibt.
+\item[(4)] Zeile vier der Ausgabe wird durch den Aufruf von \texttt{printf} in Zeile 17 innerhalb der Funktion \texttt{diff} erzeugt. Die Werte der zur Funktion \texttt{diff} \textit{lokalen} Variablen \texttt{a} und \texttt{b} werden hier ausgegeben. 
+\item[(5)] Zeile fünf der Ausgabe wird durch den Aufruf von \texttt{printf} in Zeile 31 erzeugt, der den Wert der zur Funktion \texttt{main} \textit{lokalen} Variable \texttt{c} ausgibt. Die Speicheradresse der Variable \texttt{c} ist zuvor durch den Aufruf in Zeile 30 als Parameter an die Funktion \texttt{diff} übergeben und dort in Folge der Zuweisung in Zeile 18 überschrieben worden. 
+\end{enumerate} 
+\subsubsection*{Welchen Rückgabewert hat die Funktion diff()?}
+Die Funktion \texttt{diff} ist vom Typ \texttt{void} und hat somit keinen Rückgabewert.
+\newpage
+\subsection*{b)}
+\lstinputlisting{../u3_4b.c}
+\newpage
+\subsection*{c)}
+\lstinputlisting{../u3_4b_2.c}
+\newpage
+%\includepdf[pages={1}]{blatt1.pdf}
+%\includepdf[pages={1}]{blatt2.pdf}
+\end{document}
