@@ -22,7 +22,6 @@ int main (int argc, char **argv) {
      printf("Usage: %s ServerAdresse\n", *argv);
      exit(EXIT_FAILURE);
   }
-  printf ("\e[2J");
 
   /* Socket anlegen: 
    * Protokollfamilie: AF_INET => TCP/IP			

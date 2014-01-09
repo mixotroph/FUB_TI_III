@@ -7,18 +7,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #define BUF 1024
 
-int main (void) {
+int main(int argc, char **argv) {
+
+  if ( argc < 2 ){
+     printf("Usage: %s  <port > < logpath >\n", *argv);
+     exit(EXIT_FAILURE);
+  }
+
+  //int path = (int) argv[1];  
+  uint16_t port = atoi( argv[1]);
+  printf("Port: %d ",port);
   /*Socket-Deskriptor*/
   int create_socket, new_socket;
   socklen_t addrlen;
+  time_t t;
   char *buffer = malloc (BUF);
   ssize_t size;
   struct sockaddr_in address;
   const int y = 1;
-  printf ("\e[2J");
-  
+
+  /* File-Deskriptor*/
+  FILE *log; 
+
   /* Socket anlegen: 
    * Protokollfamilie: AF_INET => TCP/IP			
    * Socket-Typ: SOCK_STREAM für TCP
@@ -54,18 +67,31 @@ int main (void) {
      if (new_socket > 0)
       printf ("Ein Client (%s) ist verbunden ...\n",
          inet_ntoa (address.sin_addr));
-     do {
+     
+ 	log = fopen(argv[2], "at");
+	/* Falls das nicht geklappt hat, gib eine Fehlermeldung aus.
+     */
+    if(log == NULL)
+    {
+        printf("Error: Can't open '%s' for read!\n", argv[2]);
+        exit(-1);
+    }
+	 do {
         printf ("Nachricht zum Versenden: ");
         fgets (buffer, BUF, stdin);
 	/* Nachricht versenden
 	 */        
 	send (new_socket, buffer, strlen (buffer), 0);
+    time(&t);
+	fputs(ctime(&t),log);
+	fputs(buffer, log);
         size = recv (new_socket, buffer, BUF-1, 0);
         if( size > 0)
            buffer[size] = '\0';
         printf ("Nachricht empfangen: %s\n", buffer);
      } while (strcmp (buffer, "quit\n") != 0);
      close (new_socket);
+	 fclose(log);
   }
  
   /* Verbindung schließen */
